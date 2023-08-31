@@ -1,7 +1,7 @@
 {
   "name": "react-library-dropdown",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -31,18 +31,21 @@
     "vite": "^4.3.2",
     "vitest": "^0.34.2"
   },
-  "description": "A react-Library-Scaffold",
+  "description": "A react-Library-Dropdown",
   "main": "vite.config.js",
-  "module": "./dist/react-library-scaffold.es.js",
+  "module": "./dist/library-npm-select-list.es.js",
   "exports": {
     ".": {
-      "import": "./dist/react-library-scaffold.es.js",
-      "require": "./dist/react-library-scaffold.umd.js"
+      "import": "./dist/react-library-dropdown.es.js",
+      "require": "./dist/react-library-dropdown.umd.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Petsamuel/react-library-scaffold.git"
+    "url": "git+https://github.com/deborah-bude/library-npm-select-list.git"
   },
   "keywords": [
     "react",
@@ -51,7 +54,7 @@
   "author": "Déborah Bude",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Petsamuel/react-library-scaffold/issues"
+    "url": "https://github.com/deborah-bude/library-npm-select-list/issues"
   },
-  "homepage": "https://github.com/Petsamuel/react-library-scaffold#readme"
+  "homepage": "https://github.com/deborah-bude/library-npm-select-list#readme"
 }
