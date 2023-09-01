@@ -3,10 +3,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-/*export default defineConfig({
+export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve("src", 'src/components/index.jsx'),
+      entry: path.resolve("src", './index.js'),
       name: 'react-library-dropdown',
       fileName: (format) => `react-library-dropdown.${format}.js`
     },
@@ -21,11 +21,4 @@ import react from '@vitejs/plugin-react'
   },
 
   plugins: [react()],
-})*/
-export default defineConfig({
-  test: {
-    globals: false,
-    environment: 'jsdom'
-  }
 })
-
