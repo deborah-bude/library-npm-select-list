@@ -1,27 +1,37 @@
 import '../App.css'
 //import {OptionDropdown} from "./Option.jsx";
 import PropTypes from 'prop-types';
+import {useEffect, useState} from "react";
 
 // prop-types
 
 export function Dropdown(props) {
-    const labelId = props.title.toLowerCase().replace(" ", "-")
+    const dropdownArray = [...props.options]
+    const labelId = props.title.toLowerCase().replaceAll(" ", "-")
+    const [openDropdown, setOpenDropdown] = useState(false)
+    const [chosenValue, setChosenValue] = useState("")
+    const [optionSelected, setOptionSelected] = useState([...dropdownArray])
+
+    if(props.search === undefined) props.search = false
 
     function dropdownClick(e) {
-        console.log("hello")
-        console.log(e)
-        e.target.setAttribute('tabindex', 1)
-        e.target.classList.toggle("active")
-
-        /*$('.dropdown-menu li').click(function () {
-            var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
-                msg = '<span class="msg">Hidden input value: ';
-            $('.msg').html(msg + input + '</span>');
-        });*/
+        setOpenDropdown(!openDropdown)
+    }
+    function closeDropdown() {
+        setOpenDropdown(false)
+    }
+    function selectOption(valueOption) {
+        console.log(valueOption)
+        setChosenValue(valueOption)
     }
 
-    function selectOption(e) {
-        console.log(e)
+    function searchValue(e) {
+        if(e.target.value.length === 0) {
+            setOptionSelected([...props.options])
+        } else {
+            setOptionSelected(dropdownArray.filter(item => item.toLowerCase().includes(e.target.value.toLowerCase())))
+        }
+        setChosenValue(e.target.value)
     }
 
     function OptionElement(option) {
@@ -29,34 +39,43 @@ export function Dropdown(props) {
             return (
                 <ul>{option.name}
                     {option.items.map((item) => {
-                            return <li key={props.value}>{props.content}</li>
+                            return <li key={item.value} onClick={() => {selectOption(option)}}>{item.content}</li>
                         }
-                        //<OptionDropdown key={item.value} value={item.value} content={item.content}/>
                     )}
                 </ul>
             )
         }
-        // return <option key={option.value} value={option.value} onClick={() => props.onSelect(option)}>{option.content}</option>
-        return <li key={option.value} onClick={selectOption}>{option.content}</li>
-        // <OptionDropdown key={option.value} value={option.value} content={option.content} onClick={() => onSelect(option)}/>
+        return <li key={option} onClick={() => {selectOption(option)}}>{option}</li>
     }
 
     return (
         <div className="dropdown" onClick={dropdownClick}>
-            <p>{props.title}</p>
-            <ul className="dropdown-menu">
-                <input type="hidden" name="gender"/>
-                {
-                    props.options.map((option) => OptionElement(option))
-                }
-            </ul>
+            {props.search ?
+                <>
+                    <label htmlFor={labelId}>{props.title}</label>
+                    <input name={labelId} id={labelId} className="chosen-value" type="text" value={chosenValue}
+                           placeholder={openDropdown ? "Select state" : "Type to filter"} onChange={searchValue}/>
+                </>
+            :
+                <>
+                    <p>{props.title}</p>
+                    <p>{chosenValue === "" ? "Select state" : chosenValue }</p>
+                    <input name={labelId} id={labelId} type="hidden" value={chosenValue} />
+                </>
+            }
+            <div className={openDropdown ? "open dropdown-menu" : "dropdown-menu"}>
+                <ul className="value-list">
+                    { optionSelected.map((option) => OptionElement(option)) }
+                </ul>
+            </div>
         </div>
     )
 }
 
 Dropdown.propTypes = {
     title: PropTypes.string.isRequired,
-    onSelect: PropTypes.func.isRequired,
+    search: PropTypes.bool,
+    //onSelect: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(
         PropTypes.oneOfType([
             PropTypes.shape({
