@@ -22,34 +22,8 @@ import './App.css'
 const optionSelect = ["alabama", "Alaska", "Arizona"]
 
 const optionsGroup = [
-    { type: 'group', name: 'Foods', items: [
-            {
-                value: "chocolate",
-                content: "Chocolate"
-            },
-            {
-                value: "vanilla",
-                content: "Vanilla"
-            },
-            {
-                value: "strawberry",
-                content: "Strawberry"
-            },]
-    },
-    { type: 'group', name: 'Colors', items: [
-            {
-                value: "blue",
-                content: "Blue"
-            },
-            {
-                value: "white",
-                content: "White"
-            },
-            {
-                value: "red",
-                content: "Red"
-            },]
-    }
+    { type: 'group', name: 'Foods', items: ["Chocolate", "Vanilla", "Strawberry"]},
+    { type: 'group', name: 'Colors', items: ["Blue", "White", "Red"]}
 ]
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -57,5 +31,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Dropdown title="Title select 1" options={optionSelect} search={false} />
       <Dropdown title="Title select 1" options={optionsGroup} search={false} />
       <Dropdown title="Title select 2" options={optionSelect} search={true} />
+      <Dropdown title="Title select 1" options={optionsGroup} search={true} />
   </React.StrictMode>,
 )

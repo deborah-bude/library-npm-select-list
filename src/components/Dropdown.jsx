@@ -26,10 +26,18 @@ export function Dropdown(props) {
     }
 
     function searchValue(e) {
+        console.log(optionSelected)
         if(e.target.value.length === 0) {
-            setOptionSelected([...props.options])
-        } else {
-            setOptionSelected(dropdownArray.filter(item => item.toLowerCase().includes(e.target.value.toLowerCase())))
+            setOptionSelected(dropdownArray)
+        }
+        else {
+            setOptionSelected(dropdownArray.filter((elementArray) =>
+                elementArray.type === "group" ?
+                    elementArray.items.filter((groupItem) => groupItem.toLowerCase().includes(e.target.value.toLowerCase()))
+                    :
+                    elementArray.toLowerCase().includes(e.target.value.toLowerCase())
+            ))
+            console.log(optionSelected)
         }
         setChosenValue(e.target.value)
     }
@@ -37,9 +45,9 @@ export function Dropdown(props) {
     function OptionElement(option) {
         if (option.type === "group") {
             return (
-                <ul>{option.name}
+                <ul key={option.name}>{option.name}
                     {option.items.map((item) => {
-                            return <li key={item.value} onClick={() => {selectOption(option)}}>{item.content}</li>
+                            return <li key={item} onClick={() => {selectOption(item)}}>{item}</li>
                         }
                     )}
                 </ul>
@@ -78,19 +86,11 @@ Dropdown.propTypes = {
     //onSelect: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(
         PropTypes.oneOfType([
-            PropTypes.shape({
-                value: PropTypes.string.isRequired,
-                content: PropTypes.string.isRequired
-            }),
+            PropTypes.string.isRequired,
             PropTypes.shape({
                 type: 'group',
                 name: PropTypes.string.isRequired,
-                items: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        value: PropTypes.string.isRequired,
-                        content: PropTypes.string.isRequired
-                    })
-                )
+                items: PropTypes.arrayOf(PropTypes.string.isRequired)
             }),
         ])
     ).isRequired
