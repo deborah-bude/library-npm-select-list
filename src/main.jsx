@@ -4,20 +4,22 @@ import {Dropdown} from './components/Dropdown.jsx'
 import './index.css'
 import './App.css'
 
-const optionSelect = [
+/*const optionSelect = [
     {
-        value: "value1",
-        content: "Value 1"
+        value: "Alabama",
+        content: "Alabama"
     },
     {
-        value: "value2",
-        content: "Value 2"
+        value: "Alaska",
+        content: "Alaska"
     },
     {
-        value: "value3",
-        content: "Value 3"
+        value: "Arizona",
+        content: "Arizona"
     },
-]
+]*/
+
+const optionSelect = ["alabama", "Alaska", "Arizona"]
 
 const optionsGroup = [
     { type: 'group', name: 'Foods', items: [
@@ -50,14 +52,10 @@ const optionsGroup = [
     }
 ]
 
-function onSelect(option) {
-    console.log('Option sélectionnée', option)
-}
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Dropdown title="Title select 1" options={optionSelect} onSelect={onSelect} />
-
-    <Dropdown title="Title select 2" options={optionsGroup} onSelect={() => {}}/>
+      <Dropdown title="Title select 1" options={optionSelect} search={false} />
+      <Dropdown title="Title select 1" options={optionsGroup} search={false} />
+      <Dropdown title="Title select 2" options={optionSelect} search={true} />
   </React.StrictMode>,
 )
