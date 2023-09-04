@@ -1,9 +1,7 @@
 import '../App.css'
 //import {OptionDropdown} from "./Option.jsx";
 import PropTypes from 'prop-types';
-import {useEffect, useState} from "react";
-
-// prop-types
+import {useState} from "react";
 
 export function Dropdown(props) {
     const dropdownArray = [...props.options]
