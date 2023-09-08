@@ -14,6 +14,12 @@ or
 
 Actual version : `1.2.0`
 
+NPM version : 9.8.1
+
+React version : 18.2.0
+
+Made with VS Code.
+
 # Web site
 [https://github.com/deborah-bude/react-library-dropdown](https://github.com/deborah-bude/react-library-dropdown)
 
