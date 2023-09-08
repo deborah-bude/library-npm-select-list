@@ -15,17 +15,6 @@ export function Dropdown(props, { search = false}) {
     const [openDropdown, setOpenDropdown] = useState(false)
     const [chosenValue, setChosenValue] = useState("")
     const [optionSelected, setOptionSelected] = useState([...dropdownArray])
-    const ref = useRef(null);
-
-    // Detect when user click outside element to close dropdown
-    useEffect(() => {
-        const handleOutSideClick = (event) => {
-            if (!ref.current?.contains(event.target)) {
-                setOpenDropdown(false)
-            }
-        };
-        window.addEventListener("mousedown", handleOutSideClick);
-    }, [ref]);
 
     function searchValue(e) {
         if(e.target.value.length === 0) {
@@ -48,17 +37,23 @@ export function Dropdown(props, { search = false}) {
             {props.search ?
                 <>
                     <label className="label-dropdown" htmlFor={labelId}>{props.title}</label>
-                    <input name={labelId} id={labelId} className="chosen-value" type="text" value={chosenValue}
-                           placeholder={openDropdown ? "Select state" : "Type to filter"} onChange={searchValue}/>
+                    <div className="input-container">
+                        <span className={openDropdown ? "arrow-down arrow" : "arrow"}></span>
+                        <input name={labelId} id={labelId} className="chosen-value" type="text" value={chosenValue}
+                               placeholder={openDropdown ? "Select state" : "Type to filter"} onChange={searchValue}/>
+                    </div>
                 </>
             :
                 <>
                     <p className="label-dropdown">{props.title}</p>
-                    <p className="input-dropdown">{chosenValue === "" ? "Select state" : chosenValue }</p>
                     <input name={labelId} id={labelId} type="hidden" value={chosenValue} />
+                    <div className="input-container">
+                        <span className={openDropdown ? "arrow-down arrow" : "arrow"}></span>
+                        <p className="input-dropdown">{chosenValue === "" ? "Select state" : chosenValue }</p>
+                    </div>
                 </>
             }
-            <div ref={ref} className={openDropdown ? "open dropdown-menu" : "dropdown-menu"}>
+            <div className={openDropdown ? "open dropdown-menu" : "dropdown-menu"}>
                 <ul className="value-list">
                     { optionSelected.map((option) => OptionElement(option)) }
                 </ul>
