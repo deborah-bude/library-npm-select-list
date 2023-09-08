@@ -12,6 +12,8 @@ Currently, two official plugins are available:
 or
 `npm install react-library-dropdown`
 
+Actual version : `1.2.0`
+
 # Web site
 [https://github.com/deborah-bude/react-library-dropdown](https://github.com/deborah-bude/react-library-dropdown)
 
@@ -23,61 +25,16 @@ or
 Options parameters
 Normal
 ``` js
-const options = [
-    {
-        value: "item-value-option-1", 
-        content: "Item content  1"
-    },
-    {
-        value: "item-value-option-2", 
-        content: "Item content 2"
-    },
-    {
-        value: "item-value-option-3", 
-        content: "Item content 3"
-    },
-]
+const options = ["Item content 1", "Item content 2", "Item content 3", "Item content 4"]
+const title = "My dropdown menu"
 
-return <Dropdown title="State" options={options}></Dropdown>
+return <Dropdown title={title} options={options}></Dropdown>
 
 ```
 
+With search option
 
-
-With `<optgroup label="">`
-
+Default value : `false`
 ``` js
-const optionsGroup = [
-    { type: 'group', name: 'Foods', items: [
-        {
-            value: "chocolate", 
-            content: "Chocolate"
-        },
-        {
-            value: "vanilla", 
-            content: "Vanilla"
-        },
-        {
-            value: "strawberry", 
-            content: "Strawberry"
-        },]
-    },
-    { type: 'group', name: 'Colors', items: [
-        {
-            value: "blue", 
-            content: "Blue"
-        },
-        {
-            value: "white", 
-            content: "White"
-        },
-        {
-            value: "red", 
-            content: "Red"
-        },]
-    }
-]
-
-return <Dropdown title="State" options={optionsGroup}></Dropdown>
-
+return <Dropdown title={title} options={options} serach={true}></Dropdown>
 ```
