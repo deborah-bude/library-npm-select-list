@@ -2,6 +2,13 @@ import '../App.css'
 import PropTypes from 'prop-types';
 import {useEffect, useRef, useState} from "react";
 
+/**
+ *
+ * @param { String } props.title
+ * @param { Array } props.options
+ * @param { Boolean } [props.search: false]
+ * @returns
+ */
 export function Dropdown(props, { search = false}) {
     const dropdownArray = [...props.options]
     const labelId = props.title.toLowerCase().replaceAll(" ", "-")
@@ -10,6 +17,7 @@ export function Dropdown(props, { search = false}) {
     const [optionSelected, setOptionSelected] = useState([...dropdownArray])
     const ref = useRef(null);
 
+    // Detect when user click outside element to close dropdown
     useEffect(() => {
         const handleOutSideClick = (event) => {
             if (!ref.current?.contains(event.target)) {
@@ -22,6 +30,7 @@ export function Dropdown(props, { search = false}) {
     function closeDropdown() {
         setOpenDropdown(false)
     }
+
     function selectOption(valueOption) {
         setChosenValue(valueOption)
     }
