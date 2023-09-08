@@ -21,19 +21,11 @@ export function Dropdown(props, { search = false}) {
     useEffect(() => {
         const handleOutSideClick = (event) => {
             if (!ref.current?.contains(event.target)) {
-                closeDropdown()
+                setOpenDropdown(false)
             }
         };
         window.addEventListener("mousedown", handleOutSideClick);
     }, [ref]);
-
-    function closeDropdown() {
-        setOpenDropdown(false)
-    }
-
-    function selectOption(valueOption) {
-        setChosenValue(valueOption)
-    }
 
     function searchValue(e) {
         if(e.target.value.length === 0) {
@@ -48,7 +40,7 @@ export function Dropdown(props, { search = false}) {
     }
 
     function OptionElement(option) {
-        return <li key={option} onClick={() => {selectOption(option)}}>{option}</li>
+        return <li key={option} onClick={() => {setChosenValue(option)}}>{option}</li>
     }
 
     return (
