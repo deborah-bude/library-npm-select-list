@@ -12,7 +12,7 @@ Currently, two official plugins are available:
 or
 `npm install react-library-dropdown`
 
-Actual version : `1.3.3`
+Actual version : `1.4.3`
 
 NPM version : 9.8.1
 
