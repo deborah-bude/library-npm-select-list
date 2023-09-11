@@ -29,16 +29,30 @@ Made with VS Code.
 
 ## How use ?
 Options parameters
-Normal
+
+**Options required**
 ``` js
-const options = ["Item content 1", "Item content 2", "Item content 3", "Item content 4"]
+const options = [
+    {
+        "name" : "Item content 1"
+        "abbreviation" : "IC1"
+    }, 
+    {
+        "name" : "Item content 2"
+        "abbreviation" : "IC2"
+    }, 
+    {
+        "name" : "Item content 3"
+        "abbreviation" : "IC3"
+    }, ]
+    
 const title = "My dropdown menu"
 
 return <Dropdown title={title} options={options}></Dropdown>
 
 ```
 
-With search option
+**Search option**
 
 Default value : `false`
 ``` js

@@ -17,19 +17,20 @@ export function Dropdown(props, { search = false}) {
     const [optionSelected, setOptionSelected] = useState([...dropdownArray])
 
     function searchValue(e) {
+        setOpenDropdown(true)
         if(e.target.value.length === 0) {
             setOptionSelected(dropdownArray)
         }
         else {
             setOptionSelected(dropdownArray.filter((elementArray) =>
-                    elementArray.toLowerCase().includes(e.target.value.toLowerCase())
+                    elementArray.name.toLowerCase().includes(e.target.value.toLowerCase())
             ))
         }
         setChosenValue(e.target.value)
     }
 
     function OptionElement(option) {
-        return <li key={option} onClick={() => {setChosenValue(option)}}>{option}</li>
+        return <li key={option.abbreviation} onClick={() => {setChosenValue(option.name)}}>{option.name}</li>
     }
 
     return (
@@ -66,6 +67,9 @@ Dropdown.propTypes = {
     title: PropTypes.string.isRequired,
     search: PropTypes.bool,
     options: PropTypes.arrayOf(
-            PropTypes.string.isRequired,
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            abbreviation: PropTypes.string.isRequired,
+        })
     ).isRequired
 }
