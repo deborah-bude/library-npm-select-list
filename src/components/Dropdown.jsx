@@ -30,7 +30,7 @@ export function Dropdown(props, { search = false}) {
     }
 
     function OptionElement(option) {
-        return <li key={option.abbreviation} onClick={() => {setChosenValue(option.name)}}>{option.name}</li>
+        return <li key={option.value} onClick={() => {setChosenValue(option.name)}}>{option.name}</li>
     }
 
     return (
