@@ -68,8 +68,8 @@ Dropdown.propTypes = {
     search: PropTypes.bool,
     options: PropTypes.arrayOf(
         PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            abbreviation: PropTypes.string.isRequired,
+            "name": PropTypes.string.isRequired,
+            "value": PropTypes.string.isRequired,
         })
     ).isRequired
 }
